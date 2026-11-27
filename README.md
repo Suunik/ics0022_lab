@@ -13,8 +13,8 @@ PasswordVault.sln
 │   │   ├── Security/              # Argon2id KDF, AES-256-GCM + AAD, binary VaultSerializer, SecretBuffer, InputValidator
 │   │   ├── Storage/               # FileVaultStorage (atomic temp+move + ACL), FileAuditLog (pwm.log), WindowsAclHelper
 │   │   └── Session/               # VaultSession, IdleTimer, IClock/SystemClock, WindowsUserIdentityProvider
-│   └── PasswordVault.App/         # WPF XAML UI (MVVM, PasswordBox -> SecretBuffer, auto-clearing clipboard)
-│       ├── Services/              # SecureStringHelper, SecureClipboardService
+│   └── PasswordVault.App/         # WPF XAML UI (.NET 10 Windows 11 Fluent ThemeMode, MVVM, auto-clearing clipboard)
+│       ├── Services/              # SecureStringHelper, SecureClipboardService, WindowsThemeService
 │       ├── ViewModels/            # MainViewModel, VaultEntryViewModel, ObservableObject, RelayCommand
 │       └── Views/                 # MainWindow.xaml & MainWindow.xaml.cs
 └── tests/

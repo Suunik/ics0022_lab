@@ -37,10 +37,11 @@ public sealed partial class App : Application, IDisposable
 
         VaultSession session = new(DefaultVaultName, storage, auditLog, clock, identityProvider);
         SecureClipboardService clipboardService = new();
+        WindowsThemeService themeService = new();
 
         try
         {
-            _mainViewModel = new MainViewModel(session, clipboardService);
+            _mainViewModel = new MainViewModel(session, clipboardService, themeService);
             MainWindow window = new(_mainViewModel);
             MainWindow = window;
             window.Show();

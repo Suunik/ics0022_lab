@@ -15,8 +15,10 @@ public sealed class MainViewModel : ObservableObject, IDisposable
 {
     private readonly VaultSession _session;
     private readonly IClipboardService _clipboardService;
+    private readonly IThemeService _themeService;
     private readonly RelayCommand _lockCommand;
 
+    private AppThemeOption _selectedTheme = AppThemeOption.System;
     private bool _isBusy;
     private string _statusMessage = "Enter a master passphrase to create or unlock your local vault.";
     private bool _isError;
@@ -25,16 +27,37 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     private string _newUsername = string.Empty;
     private bool _disposed;
 
-    public MainViewModel(VaultSession session, IClipboardService clipboardService)
+    public MainViewModel(VaultSession session, IClipboardService clipboardService, IThemeService themeService)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(clipboardService);
+        ArgumentNullException.ThrowIfNull(themeService);
 
         _session = session;
         _clipboardService = clipboardService;
+        _themeService = themeService;
         _lockCommand = new RelayCommand(LockVault, () => IsUnlocked && !IsBusy);
 
         RefreshSessionProperties();
+    }
+
+    public IReadOnlyList<AppThemeOption> ThemeOptions { get; } =
+    [
+        AppThemeOption.System,
+        AppThemeOption.Light,
+        AppThemeOption.Dark
+    ];
+
+    public AppThemeOption SelectedTheme
+    {
+        get => _selectedTheme;
+        set
+        {
+            if (SetProperty(ref _selectedTheme, value))
+            {
+                _themeService.ApplyTheme(value);
+            }
+        }
     }
 
     public ObservableCollection<VaultEntryViewModel> Entries { get; } = [];

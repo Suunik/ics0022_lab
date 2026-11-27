@@ -5,9 +5,9 @@ namespace PasswordVault.App.ViewModels;
 /// </summary>
 public sealed class VaultEntryViewModel : ObservableObject
 {
-    public const string MaskedPasswordPlaceholder = "••••••••••••";
+    public static readonly string MaskedPlaceholder = new('\u2022', 12);
 
-    private string _displayPassword = MaskedPasswordPlaceholder;
+    private string _displayPassword = MaskedPlaceholder;
     private bool _isPasswordVisible;
 
     public VaultEntryViewModel(ulong id, string site, string username)
@@ -51,7 +51,7 @@ public sealed class VaultEntryViewModel : ObservableObject
 
     public void Hide()
     {
-        DisplayPassword = MaskedPasswordPlaceholder;
+        DisplayPassword = MaskedPlaceholder;
         IsPasswordVisible = false;
     }
 }
