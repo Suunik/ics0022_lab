@@ -51,3 +51,9 @@ dotnet test PasswordVault.sln -c Release --verbosity normal
 3. Inspect the `.vault` file and confirm neither your master passphrase nor saved entry passwords appear as plaintext.
 4. Keep `.vault`, `.log`, `.tmp`, and SonarQube scan tokens out of Git (`.gitignore` excludes `*.vault`, `*.log`, `*.tmp`, `.vault.lock`, `bin/`, `obj/`, `.sonarqube/`).
 5. Scan the repository once with SonarQube Cloud Free or SonarQube Community Build (`dotnet-sonarscanner` for `.sln` projects).
+
+## AI Disclaimer
+
+This repository contains a password manager application generated with the help of AI. It was created for coursework practice to explore how AI can generate an application and to assess the security of the resulting code.
+
+This application is intended for educational and testing purposes only. Its security has not been verified, so do not use it to store real passwords or other sensitive information.
