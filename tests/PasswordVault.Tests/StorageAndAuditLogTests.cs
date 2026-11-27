@@ -101,11 +101,11 @@ public sealed class StorageAndAuditLogTests
         }
 
         string logContent = File.ReadAllText(_auditLog.LogPath, Encoding.UTF8);
-        StringAssert.Contains(logContent, "event=Create", StringComparison.Ordinal);
-        StringAssert.Contains(logContent, "event=AddEntry", StringComparison.Ordinal);
-        StringAssert.Contains(logContent, "event=Lock", StringComparison.Ordinal);
-        StringAssert.Contains(logContent, "event=Unlock record_id=- outcome=Failure", StringComparison.Ordinal);
-        StringAssert.Contains(logContent, "event=AccessDenied", StringComparison.Ordinal);
+        Assert.Contains("event=Create", logContent, StringComparison.Ordinal);
+        Assert.Contains("event=AddEntry", logContent, StringComparison.Ordinal);
+        Assert.Contains("event=Lock", logContent, StringComparison.Ordinal);
+        Assert.Contains("event=Unlock record_id=- outcome=Failure", logContent, StringComparison.Ordinal);
+        Assert.Contains("event=AccessDenied", logContent, StringComparison.Ordinal);
 
         // Neither master passphrase, entry secret, nor entry username should appear in pwm.log.
         Assert.IsFalse(logContent.Contains(Encoding.UTF8.GetString(master), StringComparison.Ordinal));
